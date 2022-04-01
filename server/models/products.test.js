@@ -5,7 +5,7 @@ const { createProduct, getProduct } = require("./products");
 setupDatabase();
 
 test("should create product", async () => {
-  const product = await createProduct({
+  await createProduct({
     name: "New product",
     sku: "XYZ-999",
     price: 500,
@@ -13,8 +13,8 @@ test("should create product", async () => {
     thumbnail: "/foo-thumbnail.jpg",
     image: "/foo.jpg"
   });
-  const fetchedProduct = await getProduct("XYZ-999");
-  expect(product.name).toEqual(fetchedProduct.name);
+  const product = await getProduct("XYZ-999");
+  expect(product.name).toEqual(product.name);
 });
 
 test("products should be unique", async () => {
