@@ -1,12 +1,21 @@
 const express = require("express");
 
-const { getAllProducts, getProduct } = require("../models/products.js");
+const {
+  createProduct,
+  getAllProducts,
+  getProduct
+} = require("../models/products.js");
 
 const productRoutes = express.Router();
 
 productRoutes.get("/", async (req, res) => {
   const products = await getAllProducts();
   res.json({ products });
+});
+
+productRoutes.post("/", async (req, res) => {
+  const product = await createProduct(req.body);
+  res.json(product);
 });
 
 productRoutes.get("/:sku", async (req, res) => {
