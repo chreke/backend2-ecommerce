@@ -4,7 +4,7 @@ const {
   createProduct,
   getAllProducts,
   getProduct
-} = require("../models/products.js");
+} = require("../models/products");
 
 const productRoutes = express.Router();
 
@@ -27,4 +27,4 @@ productRoutes.get("/:sku", async (req, res) => {
   }
 });
 
-module.exports = { productRoutes };
+module.exports = productRoutes ;
