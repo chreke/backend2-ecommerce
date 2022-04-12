@@ -1,0 +1,32 @@
+name: Run tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo
+        ports:
+          - 27017:27017
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 17.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 17.x
+    - name: Install Node dependencies
+      run: |
+        cd server
+        npm install
+    - name: Run unit test suite
+      env:
+        MONGODB_URL: mongodb://mongo:27017/ecommerce
+      run: |
+        cd server
+        npm test
