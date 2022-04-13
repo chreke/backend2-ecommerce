@@ -11,6 +11,6 @@ jobs:
         with:
           node-version: 17.x
       - name: Install Node dependencies
-        run: npm install
+        run: cd server && npm install
       - name: Run unit test suite
-        run: npm test
+        run: cd server && npm test
